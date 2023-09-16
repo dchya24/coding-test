@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('ekskul', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->date('birth_date');
-            $table->smallInteger('gender');
-            $table->string('password');
-            $table->rememberToken();
+            $table->unsignedBigInteger('siswa_id');
+            $table->string('nama');
+            $table->year('tahun');
             $table->timestamps();
+
+            $table->foreign('siswa_id')->references('id')
+                ->on('siswa')->cascadeOnDelete();
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('ekskul');
     }
 };
