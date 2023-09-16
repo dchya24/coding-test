@@ -59,7 +59,13 @@ class SiswaController extends Controller
             );
         }
         catch(Exception $e){
-            dd($e);
+            return redirect()->back()->with(
+                'status',
+                [
+                    "status" =>  "danger",
+                    "message" => "Terjadi Kesalahan pada sistem"
+                ]
+            );
         }
     }
 
